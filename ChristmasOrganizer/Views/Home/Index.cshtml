@@ -1,31 +1,73 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Welcome to the pogson-lavalley Christmas Organizer";
 }
 
+<style>
+    #fromNames, #toNames {
+        border: 1px solid #eee;
+        width: 142px;
+        min-height: 20px;
+        list-style-type: none;
+        margin: 0;
+        padding: 5px 0 0 0;
+        float: left;
+        margin-right: 10px;
+    }
+
+        #fromNames li, #toNames li {
+            margin: 0 5px 5px 5px;
+            padding: 5px;
+            font-size: 1.2em;
+            width: 120px;
+        }
+</style>
+
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1> Christmas Organizer 1.0.</h1>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div>
         <h2>Getting started</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Select which family you would like to generate a christmas match for and just click gnereate!
+            If you didnt like that match just keep clicking un till you do. Then click Save and email will be sent to all participants with the list!
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+    <label for="familySelector">Select a family</label>
+    <select name="familySelector" id="familySelector">
+        <option selected="selected">Select a family name</option>
+        <option>Pogson</option>
+        <option>Lavalley</option>
+    </select>
+
+    <ul id="sortable1" class="connectedSortable hidden">
+        <li class="ui-state-default">Item 1</li>
+        <li class="ui-state-default">Item 2</li>
+        <li class="ui-state-default">Item 3</li>
+        <li class="ui-state-default">Item 4</li>
+        <li class="ui-state-default">Item 5</li>
+    </ul>
+
+    <ul id="sortable2" class="connectedSortable hidden">
+        <li class="ui-state-highlight">Item 1</li>
+        <li class="ui-state-highlight">Item 2</li>
+        <li class="ui-state-highlight">Item 3</li>
+        <li class="ui-state-highlight">Item 4</li>
+        <li class="ui-state-highlight">Item 5</li>
+    </ul>
+
 </div>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+  $(function() {
+      $("#familySelector").selectmenu();
+      $(".familySelector").on('change', function () {
+          alert(this.value);
+      });
+      $("#fromNames, #toNames").sortable({
+          connectWith: ".connectedSortable"
+      }).disableSelection();
+  });
+</script>
